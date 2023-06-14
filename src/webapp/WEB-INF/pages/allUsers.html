@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+<!--<table align="center" border="2" bgcolor="#f5f5f5" width="30%">-->
+
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Id</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>AGE</th>-->
+<!--        <th>Email</th>-->
+<!--        <th colspan="2">Update/Delete</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<div>
+    <th:block th:each="user : ${users}">
+        <a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getName() + ' ' + user.getAge()}">USER</a>
+        <br/>
+    </th:block>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/spring_mvc_war/new">Create new user</a>
+</body>
+</html>
