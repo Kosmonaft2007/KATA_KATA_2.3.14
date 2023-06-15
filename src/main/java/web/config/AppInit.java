@@ -9,8 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 
-
-public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     // Метод, указывающий на класс конфигурации
     @Override
@@ -37,7 +36,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
-        return new Filter[] {characterEncodingFilter};
+        return new Filter[]{characterEncodingFilter};
     }
 
     @Override
@@ -45,9 +44,10 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         super.onStartup(aServletContext);
         registerHiddenFieldFilter(aServletContext);
     }
+
     private void registerHiddenFieldFilter(ServletContext aContext) {
         aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter())
+                        new HiddenHttpMethodFilter())
                 .addMappingForUrlPatterns(null, true, "/*");
     }
 }

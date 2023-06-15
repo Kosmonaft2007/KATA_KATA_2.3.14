@@ -25,12 +25,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-//    @Pattern(regexp = "^[a-zA-Z-А-аЯ-я]+$", message = " английские буквы")
-//    @NotEmpty(message = "Name should not be empty")
-//    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-//    @Column(name = "Nation")
-//    private String national;
-
     public User(Long id, String name, int age, String email) {
         this.id = id;
         this.name = name;

@@ -14,6 +14,7 @@ import javax.validation.Valid;
 //@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -30,10 +31,13 @@ public class UserController {
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("users", new User());
-    return "newUser";
+        return "newUser";
     }
+
     @PostMapping("/users")
     public String create(@ModelAttribute("users") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "redirect:/";
         userService.createUser(user);
         return "redirect:/";
     }
@@ -44,25 +48,24 @@ public class UserController {
         model.addAttribute("users", userService.readUser(id));
         return "show";
     }
+
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id, User user) {
         model.addAttribute("users", userService.readUser(id));
         return "updateUser";
     }
+
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("users") @Valid User user,BindingResult result, @PathVariable("id") long id, Model model) {
+    public String update(@ModelAttribute("users") @Valid User user, BindingResult result, @PathVariable("id") long id, Model model) {
         if (result.hasErrors()) {
-//            model.addAttribute("users", user);
             return "redirect:/";
         }
-        userService.updateUser(user,id);
+        userService.updateUser(user, id);
         return "redirect:/";
-
-
     }
 
     @DeleteMapping("/{id}")
-    public String  deleteUser(@PathVariable("id") long id) {
+    public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/";
     }
