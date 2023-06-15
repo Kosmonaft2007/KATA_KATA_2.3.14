@@ -6,27 +6,48 @@
     <title>All users</title>
 </head>
 <body>
-<!--<table align="center" border="2" bgcolor="#f5f5f5" width="30%">-->
+<table align="center" border="4" bgcolor="#f5f5f5" width="60%">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mail</th>
+        <th colspan="2">Update/Delet</th>
+    </tr>
+    </thead>
+    <tbody>
 
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>Id</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>AGE</th>-->
-<!--        <th>Email</th>-->
-<!--        <th colspan="2">Update/Delete</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<div>
-    <th:block th:each="user : ${users}">
-        <a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getName() + ' ' + user.getAge()}">USER</a>
-        <br/>
-    </th:block>
-</div>
+    <tr th:if="${users.isEmpty()}">
+        <th align="center" colspan="5" style="color: red">DB пуста</th>
+    </tr>
+
+    <tr th:each="user: ${users}" align="center">
+        <td><a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getId()}">user</a></td>
+        <td><a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a></td>
+        <td th:text="${user.getAge()}"/>
+        <td th:text="${user.getEmail()}"/>
+
+        <td>
+            <form th:action="@{/{id}/edit(id=${user.getId()})}">
+                <input type="submit" value="update" style="color: green"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+                <input type="submit" value="delete" style="color: red"/>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/new}">
+    <input type="submit" value="Create new Person" style="color-scheme: dark"/>
+</form>
 
 <br/>
 <hr/>
 
-<a href="/spring_mvc_war/new">Create new user</a>
 </body>
 </html>

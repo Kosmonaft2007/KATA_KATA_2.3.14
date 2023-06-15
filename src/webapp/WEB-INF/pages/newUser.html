@@ -6,21 +6,24 @@
     <title>Create new user</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/users}" th:object="${users}">
 
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
+<form th:action="@{/users}" th:method="POST" th:object="${users}"><br><br>
+    <label for="name">Name</label>
+    <input th:field="*{name}" type="text" id="name"/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
     <br/>
-
-    <label for="age">Enter age: </label>
-    <input type="text" th:field="*{age}" id="age"/>
+    <label for="age">Age</label>
+    <input th:field="*{age}" type="text" id="age"/>
+    <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
     <br/>
-
-    <label for="email">Enter Email: </label>
-    <input type="text" th:field="*{email}" id="email"/>
+    <label for="email">Email</label>
+    <input th:field="*{email}" type="text" id="email"/>
+    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
     <br/>
+    <input type="submit" value="Creat">
+</form>
 
-    <input type="submit" value="Create!"/>
+
 </form>
 </body>
 </html>
