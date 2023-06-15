@@ -45,15 +45,16 @@ public class UserController {
         return "show";
     }
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(Model model, @PathVariable("id") int id, User user) {
         model.addAttribute("users", userService.readUser(id));
         return "updateUser";
     }
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("users") @Valid User user,BindingResult bindingResult, @PathVariable("id") long id) {
-        if (bindingResult.hasErrors())
-            return "/";
-        user.setId(id);
+    public String update(@ModelAttribute("users") @Valid User user,BindingResult result, @PathVariable("id") long id, Model model) {
+        if (result.hasErrors()) {
+//            model.addAttribute("users", user);
+            return "redirect:/";
+        }
         userService.updateUser(user,id);
         return "redirect:/";
 

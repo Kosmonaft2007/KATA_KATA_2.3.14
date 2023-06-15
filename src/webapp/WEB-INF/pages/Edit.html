@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<import spring.ftl>
+<html lang="en">
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+
+
+
+<form action="" method="POST">
+  Name:
+  <spring.bind "personForm.name">
+  <input type="text"
+         name="${spring.status.expression}"
+         value="${spring.status.value?html}"/><br />
+
+  <list spring.status.errorMessages as error> <b> ${error}</b> <br /> </list>
+<br />
+
+<input type="submit" value="submit"/>
+</form>
+
+
+
+</html>
