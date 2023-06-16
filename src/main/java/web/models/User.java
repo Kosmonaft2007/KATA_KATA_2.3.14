@@ -1,4 +1,5 @@
 package web.models;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 

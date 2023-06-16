@@ -27,7 +27,7 @@ public class UserController {
         return "/allUsers";
     }
 
-//    //создать нового _______________________________________________________________________________
+    //    //создать нового _______________________________________________________________________________
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("users", new User());
@@ -41,7 +41,8 @@ public class UserController {
         userService.createUser(user);
         return "redirect:/";
     }
-//
+
+    //
 //    //прочитать по id _______________________________________________________________________________
     @GetMapping("/{id}")
     public String read(@PathVariable("id") Long id, Model model) {
