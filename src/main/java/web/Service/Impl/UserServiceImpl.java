@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional (readOnly = true)
     public List<User> getAllUsers() {
         return userRepS.getAllUsers();
     }
@@ -35,14 +35,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public User readUser(long id) {
+    public User readUser(Long id) {
         return userRepS.readUser(id);
     }
 
     @Override
     @Transactional
-    public void deleteUser(long id) {
+    public void deleteUser(Long id) {
         userRepS.deleteUser(id);
     }
 }
